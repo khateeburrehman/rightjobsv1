@@ -1,0 +1,167 @@
+<h2>Register</h2>
+<hr>
+<form *ngIf="jobseeker" [formGroup]="employerRegisterForm" (ngSubmit)="onEmployerSubmit()" novalidate>
+     <div class="row">
+      <div class="form-group col-md-6">
+          <label class="required" for="companyName">Company Name</label>
+          <input type="text" formControlName="companyName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.companyName.errors }" />
+          <div *ngIf="submitted && f.companyName.errors" class="invalid-feedback">
+              <div *ngIf="f.companyName.errors.required">company Name is required</div>
+          </div>
+      </div>
+      <div class="form-group col-md-6">
+          <label class="required" for="companySize">Company Size</label>
+          <input type="number" formControlName="companySize" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.companySize.errors }" />
+          <div *ngIf="submitted && f.companySize.errors" class="invalid-feedback">
+              <div *ngIf="f.companySize.errors.required">Company Size is required</div>
+              <div *ngIf="f.companySize.errors.min">Company Size must be greater than 0</div>
+          </div>
+      </div>
+      <div class="form-group col-md-6">
+          <label class="required" for="designation">Designation</label>
+          <input type="text" formControlName="designation" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.designation.errors }" />
+          <div *ngIf="submitted && f.designation.errors" class="invalid-feedback">
+              <div *ngIf="f.designation.errors.required">Designation is required</div>
+          </div>
+      </div>
+      <div class="form-group col-md-6">
+          <label class="required" for="jobTitle">Jobtitle</label>
+          <input type="text" formControlName="jobTitle" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.jobTitle.errors }" />
+          <div *ngIf="submitted && f.jobTitle.errors" class="invalid-feedback">
+              <div *ngIf="f.jobTitle.errors.required">Jobtitle is required</div>
+          </div>
+      </div>
+      <div class="form-group col-md-6">
+          <label class="required" for="contactPersonName">Contact Person Name</label>
+          <input type="text" formControlName="contactPersonName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contactPersonName.errors }" />
+          <div *ngIf="submitted && f.contactPersonName.errors" class="invalid-feedback">
+              <div *ngIf="f.contactPersonName.errors.required">Contact Person Name is required</div>
+              <div *ngIf="f.contactPersonName.errors.minlength">Name Length Should be greater than 4.</div>
+              <div *ngIf="f.contactPersonName.errors.minlength">Name Length Should be greater than 4.</div>
+          </div>
+      </div>
+      <div class="form-group col-md-6">
+          <label class="required" for="city">City</label>
+          <select id="city" formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+                <option *ngFor="let c of cities" [ngValue]="c">{{ c }}</option>
+            </select>
+          <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+              <div *ngIf="f.city.errors.required">City is required</div>
+          </div>
+      </div>
+      <div class="form-group col-md-6">
+          <label class="required">Email</label>
+          <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Email is required</div>
+              <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+          </div>
+      </div>    
+      <div class="form-group col-md-6">
+        <label class="required" for="phone">Phone</label>
+        <international-phone-number formControlName="phone" [ngClass]="{ 'invalid': submitted && !f.phone.valid }" placeholder="Enter phone number" [maxlength]="15" [defaultCountry]="'pk'" [required]="true"></international-phone-number>
+        <!-- <int-phone-prefix [locale]="'en'" [defaultCountry]="'pk'" formControlName="phone"></int-phone-prefix> -->         
+        <div *ngIf="submitted && !f.phone.valid" class="invalid-error">
+            <div *ngIf="!f.phone.valid">Invalid phone number</div>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+          <label class="required" for="cnic">CNIC</label>
+          <input type="text" formControlName="cnic" class="form-control" (keydown)="cnicKeyDown($event)" maxlength="15" placeholder="xxxxx-xxxxxxxx-x" [ngClass]="{ 'is-invalid': submitted && f.cnic.errors }" />
+          <div *ngIf="submitted && f.cnic.errors" class="invalid-feedback">
+              <div *ngIf="f.cnic.errors.required">CNIC is required</div>
+              <div *ngIf="f.cnic.errors.minlength">CNIC Format (13202-1021202-9)</div>
+          </div>
+      </div>
+      <div class="form-group col-md-6">
+          <label class="required" for="password">Password</label>
+          <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              <div *ngIf="f.password.errors.required">Password is required</div>
+              <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+          </div>
+      </div>
+      <div class="form-group col-md-12">
+        <re-captcha
+            formControlName="captcha" name="captcha" siteKey="6Lcs_HMUAAAAAFsUmB_d-Z31lgJb9WkcbrXpiJFH" [ngClass]="{ 'is-invalid': submitted && f.captcha.errors }">
+        </re-captcha>
+        <div *ngIf="submitted && f.captcha.errors" class="invalid-error">
+            <div *ngIf="f.captcha.errors.required">Please check re-captcha</div> 
+        </div>       
+      </div>
+      <div class="form-group col-md-6">
+          <button [disabled]="loading" class="btn btn-primary">Register</button>
+          <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+          <a [routerLink]="['/login']" class="btn btn-link">Already registered</a>
+      </div>
+    </div> 
+</form>
+
+<form *ngIf="!jobseeker" [formGroup]="jobseekerRegisterForm" (ngSubmit)="onJobseekerSubmit()" novalidate>
+        <div class="row">
+         <div class="form-group col-md-6">
+             <label class="required" for="firstName">First Name</label>
+             <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && jf.firstName.errors }" />
+             <div *ngIf="submitted && jf.firstName.errors" class="invalid-feedback">
+                 <div *ngIf="jf.firstName.errors.required">First Name is required</div>
+                 <div *ngIf="jf.firstName.errors.minlength">Name Too short.</div>
+                 <div *ngIf="jf.firstName.errors.pattern">Is it valid Name ?</div>
+             </div>
+         </div>
+         <div class="form-group col-md-6">
+             <label class="required" for="lastName">Last Name</label>
+             <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && jf.lastName.errors }" />
+             <div *ngIf="submitted && jf.lastName.errors" class="invalid-feedback">
+                 <div *ngIf="jf.lastName.errors.required">Last Name is required</div>
+                 <!-- <div *ngIf="f.lastName.errors.minlength">Last Name must</div> -->
+             </div>
+         </div>
+         <div class="form-group col-md-6">
+            <label class="required" for="gender">Gender</label>
+            <select id="gender" formControlName="gender" class="form-control" placeholder="Gender" [ngClass]="{ 'is-invalid': submitted && jf.gender.errors }">
+                <option [ngValue]="null">-- Select your gender</option> 
+                <option *ngFor="let g of gender" [ngValue]="g">{{ g }}</option>
+                </select>
+            <div *ngIf="submitted && jf.gender.errors" class="invalid-feedback">
+                <div *ngIf="jf.gender.errors.required">Gender is required</div>
+            </div>
+         </div>
+         <div class="form-group col-md-6">
+            <label class="required" for="phone">Phone</label>
+            <international-phone-number formControlName="phone" [ngClass]="{ 'invalid': submitted && !jf.phone.valid }" placeholder="Enter phone number" [maxlength]="15" [defaultCountry]="'pk'" [required]="true"></international-phone-number>
+            <!-- <int-phone-prefix [locale]="'en'" [defaultCountry]="'pk'" formControlName="phone"></int-phone-prefix> -->         
+            <div *ngIf="submitted && !jf.phone.valid" class="invalid-error">
+                <div *ngIf="!jf.phone.valid">Invalid phone number</div>
+            </div>
+         </div>
+         <div class="form-group col-md-6">
+                <label class="required">Email</label>
+                <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && jf.email.errors }" />
+                <div *ngIf="submitted && jf.email.errors" class="invalid-feedback">
+                    <div *ngIf="jf.email.errors.required">Email is required</div>
+                    <div *ngIf="jf.email.errors.email">Email must be a valid email address</div>
+                </div>
+         </div>
+         <div class="form-group col-md-6">
+                <label class="required" for="password">Password</label>
+                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && jf.password.errors }" />
+                <div *ngIf="submitted && jf.password.errors" class="invalid-feedback">
+                    <div *ngIf="jf.password.errors.required">Password is required</div>
+                    <div *ngIf="jf.password.errors.minlength">Password must be at least 6 characters</div>
+                </div>
+         </div>
+         <div class="form-group col-md-12">
+          <re-captcha
+            formControlName="captcha" name="captcha" siteKey="6Lcs_HMUAAAAAFsUmB_d-Z31lgJb9WkcbrXpiJFH" [ngClass]="{ 'is-invalid': submitted && jf.captcha.errors }">
+          </re-captcha>
+          <div *ngIf="submitted && jf.captcha.errors" class="invalid-error">
+            <div *ngIf="jf.captcha.errors.required">Please check re-captcha</div> 
+          </div>       
+         </div>
+         <div class="form-group col-md-6">
+             <button [disabled]="loading" type="submit" class="btn btn-primary">Register</button>
+             <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+             <a [routerLink]="['/login']" class="btn btn-link">Already registered</a>
+         </div>
+       </div> 
+   </form>

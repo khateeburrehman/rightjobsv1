@@ -1,0 +1,32 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+    background: rgb(107, 107, 243);
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+.invalid .form-control {
+    border-color: #dc3545 !important;
+}
+
+.form-group label.required:after  {
+    content: "*";
+    color: red;
+    padding-left: 2px;
+    font-weight: 900;
+  }
+
+.invalid-error {
+    /* display: none; */
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
+.fullwidth {
+    width: 100%
+}
+.pt-0 {
+    padding-top: 0;
+}
