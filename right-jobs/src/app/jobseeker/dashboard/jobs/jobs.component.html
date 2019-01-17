@@ -1,0 +1,94 @@
+<div class="h-70 bg-body-dash">
+  <div class="container">
+      <div class="row pt-5">
+          <div class="col-md-12 d-inline-flex">		
+              <div class="w-100">
+                  <div class="mb-5 w-100 d-inline-flex">
+                      <div class="text-center col-10 w-100">
+                          <button class="btn border-radius-20 text-uppercase" ng-click="togglejobs()" ng-class="{'position-relative':showSavedjobs==false, 'btn-active-job':showSavedjobs==false}">Applied</button>
+                          <button class="btn btn-saved border-radius-20 text-uppercase" ng-click="togglejobs()" ng-class="{'position-relative':showSavedjobs==true, 'btn-active-job':showSavedjobs==true}">Saved</button>
+                      </div>
+                      <div class="col-2 float-right">
+                          <button class="btn btn-pink text-uppercase float-right">View as employer</button>
+                      </div>
+                  </div>						
+                  <div class="col-md-12 p-0" ng-show="showSavedjobs === false">
+                      <div class="bg-light box-shadow mb-10" ng-repeat="jobs in appliedJobs">					
+                          <div class="p-4 w-100 d-inline-flex">
+                              <div class="col-md-2">
+                                  <div class="display-center h-100 d-flex">
+                                      <img src="https://www.freelogodesign.org/Content/img/logo-ex-7.png" class="img-compnay-job">
+                                  </div>
+                              </div>
+                              <div class="col-md-5">
+                                  <div>
+                                      <span><strong>Full stack developer</strong></span>
+                                      <span class="font-small d-block">Zeptosystems</span>
+                                  </div>
+                                  <div class="text-justify font-small">
+                                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                                  </div>
+                                  <div class="text-center">
+                                      <a href="javascript:void(0)">View detail</a>
+                                  </div>
+                              </div>
+                              <div class="col-md-2 d-flex display-center">
+                                  <img class="icon-date" src="modules/cvbuilder/assets/icons/applied_date.png">
+                                  <span class="font-small ml-2">18 Oct 2018</span>
+                              </div>
+                              <div class="col-md-2 d-flex display-center">
+                                  <img class="icon-date" src="modules/cvbuilder/assets/icons/expire_date.png">
+                                  <span class="font-small ml-2">20 Oct 2018</span>
+                              </div>
+                              <div class="col-md-1 pl-0 d-flex display-center">
+                                  <div>
+                                      <span class="status-applied-job font-small font-italic">Applied</span>
+                                      <span class="status-shortlisted font-small font-italic">Shortlisted</span>
+                                  </div>
+                              </div>                                        
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-12 p-0" ng-show="showSavedjobs === true">
+                      <div class="bg-light box-shadow mb-10" ng-repeat="jobs in savedJobs">					
+                          <div class="p-4 w-100 d-inline-flex">
+                              <div class="col-md-2">
+                                  <div class="display-center h-100 d-flex">
+                                      <img src="http://www.advertguru.co.zw/wp-content/uploads/2015/09/logo-designing-in-Harare-Zimbabwe.jpg" class="img-compnay-job">
+                                  </div>
+                              </div>
+                              <div class="col-md-5">
+                                  <div>
+                                      <span><strong>Graphic Designer</strong></span>
+                                      <span class="font-small d-block">John Doe inc.</span>
+                                  </div>
+                                  <div class="text-justify font-small">
+                                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                                  </div>
+                                  <div class="text-center">
+                                      <a href="javascript:void(0)">View detail</a>
+                                  </div>
+                              </div>
+                              <div class="col-md-2 d-flex display-center">
+                                  <img class="icon-date" src="modules/cvbuilder/assets/icons/applied_date.png">
+                                  <span class="font-small ml-2">18 Oct 2018</span>
+                              </div>
+                              <div class="col-md-2 d-flex display-center">
+                                  <img class="icon-date" src="modules/cvbuilder/assets/icons/expire_date.png">
+                                  <span class="font-small ml-2">20 Oct 2018</span>
+                              </div>
+                              <div class="col-md-1 pl-0 d-flex display-center">
+                                  <div>
+                                      <span class="status-applied-job font-small font-italic">Applied</span>
+                                      <span class="status-saved-job font-small font-italic">Saved</span>
+                                      <span class="status-shortlisted font-small font-italic">Shortlisted</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>						
+              </div>
+          </div>			
+      </div>
+  </div>
+</div>

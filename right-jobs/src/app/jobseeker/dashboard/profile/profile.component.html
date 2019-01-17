@@ -1,0 +1,494 @@
+<div class="h-100 bg-body-dash">
+  <div class="container">
+    <div class="row pt-5">
+      <div class="col-md-12 d-inline-flex">		
+        <div>			
+          <img class="img-dash-body box-shadow" src="../assets/img/avatar-image.png">
+        </div>
+        <div>
+          <div class="pl-18 mb-2 w-100 d-inline-flex">
+            <div class="col-md-6 p-0">
+              <h3 class="text-uppercase">{{profileData.name}}</h3>
+              <span class="d-block"><strong>{{profileData.designation}}</strong><strong *ngIf="profileData.designation === null || profileData.designation === ''">Current designation</strong></span>
+              <span>John Doe inc.</span>
+            </div>
+            <div class="col-md-6 p-0">
+              <button class="btn btn-pink text-uppercase float-right">View as employer</button>
+            </div>
+          </div>
+          <div class="d-inline-flex">
+            <div class="col-md-9 d-inline-flex">
+              <div class="mt-10 position-absolute l-30">
+                <div class="text-left-bar active-sidebar z-index-33 position-relative">
+                  <p class="text-uppercase font-small text-rotate">Introduction</p>
+                </div>
+                <div class="text-left-bar z-index-33 position-relative">
+                  <p class="text-uppercase font-small text-rotate">Projects</p>
+                </div>
+                <div class="text-left-bar z-index-33 position-relative">
+                  <p class="text-uppercase font-small text-rotate">Experience</p>
+                </div>
+                <div class="text-left-bar z-index-33 position-relative">
+                  <p class="text-uppercase font-small text-rotate">Education</p>
+                </div>
+                <div class="text-left-bar z-index-33 position-relative">
+                  <p class="text-uppercase font-small text-rotate">Certification</p>
+                </div>
+              </div>
+              <div class="bg-light box-shadow z-index-998 w-800">					
+                <div class="pl-23 pt-4 pr-2 pb-4">
+                  <div class="mb-3 d-inline-flex">
+                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor of reprehenderit of voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt of culpa qui officia deserunt mollit anim id est laborum</p>
+                    <div class="float-right" ng-click="editProf()">
+                      <i class="fas ml-3 icon-edit icon-size fa-pencil-alt"></i>
+                    </div>
+                  </div>
+                  <div class="mt-3">
+                    <h5><strong>Personal Information</strong></h5>
+                    <div class="d-inline-flex w-100" *ngIf="!prof.isEditmode">
+                      <div class="col-md-6 p-0 p-info">
+                        <span>Name</span>
+                        <span>Email Address</span>
+                        <span>Phone No</span>
+                        <span>Gender</span>
+                        <span>Functional area</span>
+                        <span>Current Salary</span>
+                        <span>Expected salary</span>
+                        <span>Experience</span>
+                        <span>Age</span>
+                        <span>Career Level</span>
+                        <span>Date of Birth</span>
+                        <span>Country/City</span>
+                        <span>CNIC</span>
+                      </div>
+                      <div class="col-md-6 p-0 p-info">
+                        <span *ngIf="profileData.name === null || profileData.name === ''">--</span><span>{{profileData.name}}</span>
+                        <span *ngIf="profileData.email === null || profileData.email === ''">--</span><span>{{profileData.email}}</span>
+                        <span *ngIf="profileData.phoneNo === null || profileData.phoneNo === ''">--</span><span>{{profileData.phoneNo}}</span>
+                        <span *ngIf="profileData.gender === null || profileData.gender === ''">--</span><span>{{profileData.gender}}</span>
+                        <span *ngIf="profileData.functionalArea === null || profileData.functionalArea === ''">--</span><span>{{profileData.functionalArea}}</span>
+                        <span *ngIf="profileData.currentSalary === null || profileData.currentSalary === ''">--</span><span>{{profileData.currentSalary}}</span>
+                        <span *ngIf="profileData.expectedsalary === null || profileData.expectedsalary === ''">--</span><span>{{profileData.expectedsalary}}</span>
+                        <span *ngIf="profileData.totalExperience === null || profileData.totalExperience === ''">--</span><span>{{profileData.totalExperience}}</span>
+                        <span *ngIf="profileData.age === null || profileData.age === ''">--</span><span>{{profileData.age}}</span>
+                        <span *ngIf="profileData.careerLevel === null || profileData.careerLevel === ''">--</span><span>{{profileData.careerLevel}}</span>
+                        <span *ngIf="profileData.dateofbirth === null || profileData.dateofbirth === ''">--</span><span>{{profileData.dateofbirth}}</span>
+                        <span *ngIf="profileData.city === null || profileData.city === ''">--</span><span>{{profileData.city}}</span>
+                        <span *ngIf="profileData.cnic === null || profileData.cnic === ''">--</span><span>{{profileData.cnic}}</span>
+                      </div>																																				
+                    </div>
+                    <div class="row" *ngIf="prof.isEditmode">                                      
+                        <div>
+                          <form>
+                          <div class="row" class="form-group">
+                            <div class="col-md-8">
+                            <label>Name</label>
+                            <input type="text" class="form-control" name="name" [(ngModel)]="editProfData.name" placeholder="name">
+                            </div>
+                            <div class="col-md-8">
+                            <label>Email</label>
+                            <input type="email" class="form-control" [(ngModel)]="editProfData.email" placeholder="email">
+                            </div>
+                            <div class="col-md-8">
+                            <label>Phone No</label>
+                            <input class="form-control"  row="3" [(ngModel)]="editProfData.phoneNo" placeholder="phoneNo">
+                            </div>
+                            <div class="col-md-8">
+                            <label>gender</label>
+                            <input class="form-control" row="3" [(ngModel)]="editProfData.gender" placeholder="gender">
+                            </div>
+                            <div class="col-md-8">
+                            <label>functional Area</label>
+                            <input class="form-control" row="3" [(ngModel)]="editProfData.functionalArea" placeholder="functionalArea">
+                            </div>
+                            <div class="col-md-8">
+                            <label>currentSalary</label>
+                            <input class="form-control" row="3" [(ngModel)]="editProfData.currentSalary" placeholder="currentSalary">
+                            </div>
+                            <div class="col-md-8">
+                            <label>expectedsalary</label>
+                            <input class="form-control" row="3" [(ngModel)]="editProfData.expectedsalary" placeholder="expectedsalary">
+                            </div> 
+                            <div class="col-md-8">
+                            <label>total Experience</label>
+                            <input class="form-control" row="3" [(ngModel)]="editProfData.totalExperience" placeholder="totalExperience">
+                            </div>
+                            <div class="col-md-8">
+                            <label>age</label>
+                            <input type="number" class="form-control" [(ngModel)]="editProfData.age" placeholder="age">
+                            </div>
+                            <div class="col-md-8">
+                            <label>career Level</label>
+                            <input class="form-control" [(ngModel)]="editProfData.careerLevel" placeholder="careerLevel">
+                            </div>
+                            <div class="col-md-8">
+                            <label>date of birth</label>
+                            <!-- <datepicker date-format="MMM-yyyy">
+                                <input class="form-control" [(ngModel)]="editProfData.dateofbirth" type="text"/>
+                            </datepicker> -->
+                            </div>
+                            <div class="col-md-8">
+                            <label>city</label>
+                            <input class="form-control" [(ngModel)]="editProfData.city" placeholder="city">
+                            </div>
+                            <div class="col-md-8">
+                            <label>cnic</label>
+                            <input class="form-control" [(ngModel)]="editProfData.cnic" placeholder="cnic">
+                            </div>                                                                                                                              
+                          </div> 
+                          <div class="row" style="padding-top:15px">
+                            <div class="col-md-2">
+                              <button class="form-control btn btn-primary pull-right" ng-click="cancelProf()">Cancel</button>
+                            </div>
+                            <div class="col-md-2">
+                              <button class="form-control btn btn-success" ng-click="updateProf()">Save</button>
+                            </div>
+                            </div><hr>                                    
+                          </form>                                          
+                        </div>
+                    </div>											
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 p-0">
+              <div class="bg-light box-profile-status box-shadow">
+                <div class="h-50 bg-profile">
+                  <div class="d-flex display-center h-100">
+                    <div class="text-center">
+                      <img class="img-badge mb-3" src="modules/cvbuilder/assets/icons/logo.svg">
+                      <p class="text-light">Your Profile is 90% complete.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="h-50">
+                  <div class="p-3">
+                    <p>Abcd efg hijk lmnop qrst uV wxyz.</p>
+                    <p>Abcd efg hijk lmnop qrst uV wxyz.</p>
+                    <p>Abcd efg hijk lmnop qrst uV wxyz.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 mb-3 mt-3 d-inline-flex">
+        <div class="col-md-9">
+          <div class="box-shadow">
+            <div class="h-20 bg-light">
+              <div class="p-3">
+                <div class="row">
+                  <div class="col-md-6">
+                      <h4>Projects</h4>
+                  </div>
+                  <div class="col-md-6">
+                    <button ng-show="!isProjCollapsed" class="btn btn-default float-right round-btn" ng-click="addProject()"><i class="fa fa-plus-square"></i></button>		
+                  </div>										
+                </div>
+              </div>
+            </div>
+            <div class="h-100 bg-light p-3">
+                <div class="row" *ngIf="proj.isEditmode">                                      
+                    <div class="col-md-12">
+                      <form>
+                        <div class="form-group">
+                          <div class="col-md-9">
+                            <label>Name</label>
+                            <input type="text" class="form-control" [(ngModel)]="editProjData.name" placeholder="Project Name">
+                          </div>
+                          <div class="col-md-9">
+                            <label>Role</label>
+                            <input type="text" class="form-control" [(ngModel)]="editProjData.role" placeholder="Role">
+                          </div>
+                          <div class="col-md-9">
+                            <label>Responsibility</label>
+                            <textarea class="form-control"  row="3" [(ngModel)]="editProjData.responsiblities" placeholder="Responsiblities"></textarea>
+                          </div>
+                          <div class="col-md-9">
+                            <label>Description</label>
+                            <textarea class="form-control" row="3" [(ngModel)]="editProjData.description" placeholder="Description"></textarea>
+                          </div>
+                          <!-- <chips [(ngModel)]="editProjData.skills" render="render(data)" class="child">
+                            <chip-tmpl>
+                              <div class="default-chip child">
+                                {{chip}}
+                                <span remove-chip="deleteChip()"><i class="fa fa-times"></i></span>
+                              </div>
+                            </chip-tmpl>
+                            <div class="inline">
+                              <input class="input-unstyle child" chip-control placeholder="Add Skill">
+                            </div>
+                          </chips>                                                                                     -->
+                        </div> 
+                        <div class="row" style="padding-top:15px">
+                            <div class="col-md-2">
+                              <button class="form-control btn btn-primary pull-right" ng-click="cancelProj()">Cancel</button>
+                            </div>
+                            <div class="col-md-2">
+                              <button ng-show="addProj === true" class="form-control btn btn-success" ng-click="saveNewProj()">Add</button>
+                              <button ng-show="addProj !== true" class="form-control btn btn-success" ng-click="updateProj()">Save</button>
+                            </div>
+                          </div><hr>                                    
+                      </form>                                          
+                    </div>
+                </div>
+              <div *ngIf="projects.length > 0">
+                <div class="row"  *ngFor="let project of projects">
+                  <div class="col-md-9">
+                    <!-- <h6><strong>{{project.name}}</strong></h6>
+                    <p>{{project.role}}</p>
+                    <p>{{project.description}}</p>
+                    <p>{{project.responsiblities}}</p> -->
+                    <!-- <chips [(ngModel)]="project.skills" render="render(data)" class="child">
+                      <chip-tmpl>
+                      <div class="default-chip child">
+                        {{chip}}
+                      </div>
+                      </chip-tmpl>
+                    </chips>  -->
+                  </div>
+                  <div class="col-md-3">
+                  <button class="btn round-btn" ng-click="editProj($index)"><i class="fa fa-edit"></i></button>
+                  <button class="btn btn-danger round-btn" ng-click="deleteProj($index,project.rid)"><i class="fa fa-trash"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 mb-3 mt-3 d-inline-flex">
+        <div class="col-md-9">
+          <div class="box-shadow">
+            <div class="h-20 bg-light">
+              <div class="p-3">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <h4>Experience</h4>
+                      </div>
+                      <div class="col-md-6">
+                        <button ng-show="!isExpCollapsed" class="btn btn-default float-right round-btn" ng-click="addExperience()"><i class="fa fa-plus-square"></i></button>		
+                      </div>										
+                    </div>
+              </div>
+            </div>
+            <div class="h-100 bg-light p-3">
+              <!-- add/edit mode -->
+              <div class="row" *ngIf="exp.isEditmode">                                      
+                  <div class="col-md-12">
+                    <form>
+                      <div class="form-group">
+                        <div class="col-md-9">
+                          <label>Company name</label>
+                          <input type="text" class="form-control" [(ngModel)]="editExpData.company.acname" auto-complete="companyAutoCompleteOptions">
+                        </div>
+                        <div class="col-md-9">
+                          <label>Designation</label>
+                          <input type="text" class="form-control" [(ngModel)]="editExpData.designation">
+                        </div>
+                        <div class="col-md-9">
+                          <label>Description</label>
+                          <textarea class="form-control"  row="3" [(ngModel)]="editExpData.description"></textarea>
+                        </div>													  
+                        <div class="col-md-9">
+                          <div class="row">
+                            <div class="col-md-4">
+                              <label>From </label>
+                              <!-- <datepicker date-format="dd-MMM-yyyy">
+                                  <input class="form-control" [(ngModel)]="editExpData.fromdate" type="text"/>
+                              </datepicker> -->
+                            </div>
+                            <div class="col-md-4">
+                              <label>To </label>
+                              <!-- <datepicker date-format="dd-MMM-yyyy">
+                                  <input class="form-control" [(ngModel)]="editExpData.todate" type="text"/>
+                              </datepicker> -->
+                            </div>
+                          </div>
+                        </div> 																											                                                                                
+                      </div> 
+                      <div class="row" style="padding-top:15px">
+                          <div class="col-md-2">
+                            <button class="form-control btn btn-primary pull-right" ng-click="cancelExp()">Cancel</button>
+                          </div>
+                          <div class="col-md-2">
+                            <button ng-show="addExp === true" class="form-control btn btn-success" ng-click="saveNewExp()">Add</button>
+                            <button ng-show="addExp !== true" class="form-control btn btn-success" ng-click="updateExp()">Save</button>
+                          </div>
+                        </div><hr>                                    
+                    </form>                                          
+                  </div>
+              </div>
+              <div *ngIf="experiences.length > 0" >
+                <div class="row" *ngFor="let exp of experiences">
+                  <div class="col-md-9">
+                    <h6><strong>{{exp.company.acname}}</strong></h6>
+                    <p>{{exp.designation}}</p>
+                    <p>{{exp.description}}</p>
+                    <p><span ng-bind-html="exp.fromdate |  date:'MMM-yyyy'"></span> To <span ng-bind-html="exp.todate |  date:'MMM-yyyy'"></span></p>                                         
+                  </div>
+                  <div class="col-md-3">
+                    <button class="btn round-btn" ng-click="editExp($index)"><i class="fa fa-edit"></i></button>
+                    <button class="btn btn-danger round-btn" ng-click="deleteExp($index,exp.rid)"><i class="fa fa-trash"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 mb-3 mt-3 d-inline-flex">
+        <div class="col-md-9">
+          <div class="box-shadow">
+            <div class="h-20 bg-light">
+              <div class="p-3">									
+                <div class="row">
+                  <div class="col-md-6">
+                      <h4>Education</h4>
+                  </div>
+                  <div class="col-md-6">
+                    <button ng-show="!isEduCollapsed" class="btn btn-default float-right round-btn" ng-click="addEducation()"><i class="fa fa-plus-square"></i></button>		
+                  </div>										
+                </div>
+              </div>
+            </div> 
+            <div class="h-100 bg-light p-3">
+              <!-- add/edit mode -->
+              <div class="row" *ngIf="edu.isEditmode">                                      
+                  <div class="col-md-12">
+                    <form>
+                      <div class="form-group">
+                        <div class="col-md-9">
+                          <label>Title</label>
+                          <input type="text" class="form-control" [(ngModel)]="editEduData.title">
+                        </div>
+                        <div class="col-md-9">
+                          <label>Institute</label>
+                          <input type="text" class="form-control" [(ngModel)]="editEduData.institute.acname" auto-complete="instituteAutoCompleteOptions">
+                        </div>
+                        <div class="col-md-9">
+                          <label>CGPA</label>
+                          <input type="number" class="form-control" [(ngModel)]="editEduData.cgpa">
+                        </div>
+                        <div class="col-md-9">
+                          <div class="row">
+                            <div class="col-md-4">
+                              <label>From </label>
+                              <!-- <datepicker date-format="MMM-yyyy">
+                                  <input class="form-control" [(ngModel)]="editEduData.fromdate" type="text"/>
+                              </datepicker> -->
+                            </div>
+                            <div class="col-md-4">
+                              <label>To </label>
+                              <!-- <datepicker date-format="MMM-yyyy">
+                                  <input class="form-control" [(ngModel)]="editEduData.todate" type="text"/>
+                              </datepicker> -->
+                            </div>
+                          </div>
+                        </div>                                                                                  
+                      </div> 
+                      <div class="row" style="padding-top:15px">
+                        <div class="col-md-2">
+                          <button class="form-control btn btn-primary pull-right" ng-click="cancelEdu()">Cancel</button>
+                        </div>
+                        <div class="col-md-2">
+                          <button ng-show="addEdu === true" class="form-control btn btn-success" ng-click="saveNewEdu()">Add</button>
+                          <button ng-show="addEdu !== true" class="form-control btn btn-success" ng-click="updateEdu()">Save</button>
+                        </div>
+                      </div><hr>                                    
+                    </form>                                          
+                  </div>
+              </div>
+              <div *ngIf="educations.length > 0" >
+                <div class="row" *ngFor="let edu of educations">
+                  <div class="col-md-9">
+                    <h6><strong>{{edu.institute.acname}}</strong></h6>
+                    <p>{{edu.title}}</p>
+                    <p>CGPA : {{edu.cgpa}}</p>
+                    <p><span ng-bind-html="edu.fromdate |  date:'MMM-yyyy'"></span> To <span ng-bind-html="edu.todate |  date:'MMM-yyyy'"></span></p>                                         
+                  </div>
+                  <div class="col-md-3">
+                    <button class="btn round-btn" ng-click="editEdu($index)"><i class="fa fa-edit"></i></button>
+                    <button class="btn btn-danger round-btn" ng-click="deleteEdu($index,edu.rid)"><i class="fa fa-trash"></i></button>
+                  </div>
+                </div>
+                <!-- <hr> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 mb-3 mt-3 d-inline-flex">
+        <div class="col-md-9">
+          <div class="box-shadow">
+            <div class="h-20 bg-light">
+              <div class="p-3">									
+                <div class="row">
+                  <div class="col-md-6">
+                      <h4>Certifications</h4>
+                  </div>
+                  <div class="col-md-6">
+                    <button ng-show="!isCertCollapsed" class="btn btn-default float-right round-btn" ng-click="addCertification()"><i class="fa fa-plus-square"></i></button>		
+                  </div>										
+                </div>
+              </div>
+            </div>
+            <div class="h-100 bg-light p-3">
+              <!-- add/edit mode -->
+              <div class="row" *ngIf="cert.isEditmode">                                      
+                <div class="col-md-12">
+                  <form>
+                    <div class="form-group">
+                      <div class="col-md-9">
+                        <label>Title</label>
+                        <input type="text" class="form-control" [(ngModel)]="editCertData.cert_title">
+                      </div>													
+                      <div class="col-md-9">
+                        <label>Description</label>
+                        <textarea row="3" class="form-control" [(ngModel)]="editCertData.cert_desc"></textarea>
+                      </div>
+                      <div class="col-md-9">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <label>Year </label>
+                            <!-- <datepicker date-format="MMM-yyyy">
+                              <input class="form-control" [(ngModel)]="editCertData.cert_year" type="text"/>
+                            </datepicker> -->
+                          </div>															
+                        </div>
+                      </div>													                                                                                  
+                    </div>  
+                    <div class="row" style="padding-top:15px">
+                      <div class="col-md-2">
+                        <button class="form-control btn btn-primary pull-right" ng-click="cancelCert()">Cancel</button>
+                      </div>
+                      <div class="col-md-2">
+                        <button ng-show="addCert === true" class="form-control btn btn-success" ng-click="saveNewCert()">Add</button>
+                        <button ng-show="addCert !== true" class="form-control btn btn-success" ng-click="updateCert()">Save</button>
+                      </div>
+                    </div><hr>                                    
+                  </form>                                          
+                </div>
+              </div>
+              <div *ngIf="certifications.length > 0">
+                <div class="row"  *ngFor="let certs of certifications">
+                  <div class="col-md-9">
+                    <h6><strong>{{certs.cert_title}}</strong></h6>
+                    <p ng-bind-html="certs.cert_year |  date:'MMM-yyyy'"><i class="fa fa-calendar"></i> </p>
+                    <p>{{certs.cert_desc}}</p>                                         
+                  </div>
+                  <div class="col-md-3">
+                    <button class="btn round-btn" ng-click="editCert($index)"><i class="fa fa-edit"></i></button>
+                    <button class="btn btn-danger round-btn" ng-click="deleteCert($index)"><i class="fa fa-trash"></i></button>
+                  </div>
+                </div>
+                <hr>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>				
+    </div>
+  </div>
+</div>
